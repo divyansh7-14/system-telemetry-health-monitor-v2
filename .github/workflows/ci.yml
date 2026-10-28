@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.10", "3.12", "3.14"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install -r requirements-dev.txt
+      - run: ruff check .
+      - run: pytest -q
+      # Package installs and the console command works (what the README tells users to do).
+      - name: Install package and run the sysmon command
+        shell: bash
+        run: |
+          pip install .
+          sysmon --version
+          sysmon --once --output-dir ci-out
+          test -f ci-out/host_info.json
+      # Runs the real agent on this machine and cross-checks it with OS tools
+      # (PowerShell/CIM on Windows, /proc and df on Linux).
+      - name: End-to-end checks
+        run: python scripts/e2e_check.py all

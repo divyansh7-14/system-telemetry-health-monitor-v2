@@ -1,0 +1,10 @@
+2026-10-27T09:23:21+00:00 WARNING  disk_min_free      C:\                    value=18.8%   limit=20%   OK->WARNING
+2026-10-27T09:23:41+00:00 WARNING  cpu_max            cpu                    value=77.2%   limit=50%   OK->WARNING
+2026-10-27T09:23:41+00:00 WARNING  disk_min_free      C:\                    value=18.8%   limit=20%   still WARNING (3 cycles)
+2026-10-27T09:24:01+00:00 WARNING  cpu_max            cpu                    value=99.8%   limit=50%   still WARNING (3 cycles)
+2026-10-27T09:24:11+00:00 CRITICAL cpu_max            cpu                    value=100.0%  limit=80%   WARNING->CRITICAL
+2026-10-27T09:24:11+00:00 WARNING  disk_min_free      C:\                    value=18.8%   limit=20%   still WARNING (6 cycles)
+2026-10-27T09:24:31+00:00 CRITICAL cpu_max            cpu                    value=100.0%  limit=80%   still CRITICAL (3 cycles)
+2026-10-27T09:24:41+00:00 WARNING  disk_min_free      C:\                    value=18.8%   limit=20%   still WARNING (9 cycles)
+2026-10-27T09:24:51+00:00 OK       cpu_max            cpu                    value=4.0%    limit=50%   CRITICAL->OK
+2026-10-27T09:25:11+00:00 WARNING  disk_min_free      C:\                    value=18.8%   limit=20%   still WARNING (12 cycles)

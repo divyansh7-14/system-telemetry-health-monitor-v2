@@ -1,0 +1,14 @@
+{
+  "interval": 15,
+  "top_n": 5,
+  "thresholds": {
+    "cpu_max": {"warning": 75, "critical": 85},
+    "memory_max": {"warning": 80, "critical": 90},
+    "swap_max": {"warning": 50, "critical": 80},
+    "disk_min_free": {"warning": 20, "critical": 15},
+    "process_cpu_max": {"warning": 50, "critical": 80},
+    "process_memory_max": {"warning": 25, "critical": 40}
+  },
+  "alerting": {"consecutive": 2, "recovery_margin": 5, "repeat_every": 10},
+  "logging": {"max_log_mb": 5, "backup_count": 3}
+}

@@ -1,0 +1,63 @@
+name: Windows demo and README check
+
+# Run by hand (Actions tab -> "Run workflow"). Produces the sample outputs on a
+# real Windows machine, and checks that the README's instructions work as written.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write  # the demo job publishes its outputs to the demo-samples branch
+
+jobs:
+  demo:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - run: pip install .
+      - name: Scripted demo (about 2.5 minutes)
+        run: python scripts/demo.py --output-dir samples
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-samples
+          path: samples/
+      - name: Publish samples to the demo-samples branch for review
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B demo-samples
+          git add -f samples
+          git commit -m "Windows demo samples from run ${{ github.run_id }}"
+          git push -f origin demo-samples
+
+  readme-windows:
+    # Follows the README's Windows instructions word for word on a fresh machine,
+    # in Windows PowerShell 5.1 (what Windows 10/11 ship with).
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: README instructions (clone, install, run, background, --stop, Task Scheduler)
+        shell: powershell
+        run: scripts\readme_check.ps1
+
+  readme-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: README Linux install
+        run: |
+          cd "$RUNNER_TEMP"
+          git clone https://github.com/divyansh7-14/system-telemetry-health-monitor.git
+          cd system-telemetry-health-monitor
+          python3 -m venv .venv
+          .venv/bin/python -m pip install .
+          .venv/bin/sysmon --once
+          test "$(wc -l < logs/metrics.jsonl)" -eq 1

@@ -1,0 +1,78 @@
+INFO sysmon: agent started: sysmon 1.0.0, PID 2948, output D:\a\system-telemetry-health-monitor\system-telemetry-health-monitor\samples, interval 10s, top 5, logs rotate at 5 MB x 3
+INFO sysmon: thresholds loaded from D:\a\system-telemetry-health-monitor\system-telemetry-health-monitor\config\demo.yaml
+== Host ==
+  Hostname      : runnervmdaln5
+  OS            : Windows Server 2025 (10.0.26100)
+  Architecture  : AMD64
+  CPU cores     : 2 physical / 4 logical
+  Total RAM     : 16.0 GB
+  Booted        : 2026-10-27T09:20:26+00:00
+  Uptime        : 0h 2m
+== Health rules (D:\a\system-telemetry-health-monitor\system-telemetry-health-monitor\config\demo.yaml) ==
+  cpu_max            : WARNING > 50%, CRITICAL > 80%
+  memory_max         : WARNING > 80%, CRITICAL > 90%
+  swap_max           : WARNING > 50%, CRITICAL > 80%
+  disk_min_free      : WARNING < 20%, CRITICAL < 15%
+  process_cpu_max    : WARNING > 50%, CRITICAL > 80%
+  process_memory_max : WARNING > 25%, CRITICAL > 40%
+  alerting           : after 2 cycle(s) in a row, clears 5 pts inside the limit, repeat every 3 cycles
+== Network ==
+  Primary       : Ethernet 4 (10.1.0.74)
+  Ethernet 4     : 7C:ED:8D:81:97:CC  10.1.0.74, fe80::6121:c8b1:c7c0:7868
+  vEthernet (nat): 00:15:5D:84:A3:02  172.27.208.1, fe80::19c2:c0c4:969a:fb14
+  Traffic counted on: Ethernet 4
+
+Writing D:\a\system-telemetry-health-monitor\system-telemetry-health-monitor\samples\metrics.jsonl and D:\a\system-telemetry-health-monitor\system-telemetry-health-monitor\samples\alerts.log every 10s. Stop with Ctrl+C or: sysmon --stop --output-dir "D:\a\system-telemetry-health-monitor\system-telemetry-health-monitor\samples"
+[#1 09:23:11 OK] CPU 9.8% | RAM 16.5% (2.6 GB/16.0 GB) | Disk C:\ 19% free, D:\ 100% free | Net rx 389 B/s tx 162 B/s  (19 ms)
+    top CPU: Runner.Worker.exe[3432] 0.8%, WindowsTerminal.exe[9052] 0.8%, System[4] 0.4%, msdtc.exe[6924] 0.4%, [protected system process][92] 0.0%
+    top MEM: explorer.exe[6960] 160.1 MB, MsMpEng.exe[3980] 159.1 MB, StartMenuExperienceHost.exe[7948] 133.9 MB, SearchHost.exe[8072] 113.5 MB, Runner.Worker.exe[3432] 102.4 MB
+[#2 09:23:21 WARNING] CPU 2.7% | RAM 16.4% (2.6 GB/16.0 GB) | Disk C:\ 19% free, D:\ 100% free | Net rx 312 B/s tx 325 B/s  (15 ms)
+    ALERT WARNING  disk_min_free      C:\                    value=18.8%   limit=20%   OK->WARNING
+    top CPU: WindowsTerminal.exe[9052] 1.4%, Runner.Worker.exe[3432] 0.1%, System[4] 0.1%, svchost.exe[1112] 0.1%, svchost.exe[1536] 0.1%
+    top MEM: explorer.exe[6960] 160.1 MB, MsMpEng.exe[3980] 159.1 MB, StartMenuExperienceHost.exe[7948] 133.9 MB, SearchHost.exe[8072] 113.5 MB, Runner.Worker.exe[3432] 99.4 MB
+[#3 09:23:31 WARNING] CPU 74.7% | RAM 16.6% (2.7 GB/16.0 GB) | Disk C:\ 19% free, D:\ 100% free | Net rx 1.1 KB/s tx 382 B/s  (20 ms)
+    top CPU: python.exe[3600] 24.9%, python.exe[1368] 24.8%, python.exe[9152] 24.7%, WindowsTerminal.exe[9052] 1.8%, python.exe[3908] 0.3%
+    top MEM: explorer.exe[6960] 160.3 MB, MsMpEng.exe[3980] 159.1 MB, StartMenuExperienceHost.exe[7948] 133.9 MB, SearchHost.exe[8072] 113.5 MB, Runner.Worker.exe[3432] 96.8 MB
+[#4 09:23:41 WARNING] CPU 77.2% | RAM 16.6% (2.6 GB/16.0 GB) | Disk C:\ 19% free, D:\ 100% free | Net rx 1.3 KB/s tx 632 B/s  (20 ms)
+    ALERT WARNING  cpu_max            cpu                    value=77.2%   limit=50%   OK->WARNING
+    ALERT WARNING  disk_min_free      C:\                    value=18.8%   limit=20%   still WARNING (3 cycles)
+    top CPU: python.exe[3600] 24.9%, python.exe[9152] 24.9%, python.exe[1368] 24.8%, WindowsTerminal.exe[9052] 1.6%, System[4] 0.2%
+    top MEM: explorer.exe[6960] 160.8 MB, MsMpEng.exe[3980] 159.1 MB, StartMenuExperienceHost.exe[7948] 133.9 MB, SearchHost.exe[8072] 113.5 MB, Runner.Worker.exe[3432] 96.9 MB
+[#5 09:23:51 WARNING] CPU 78.1% | RAM 16.6% (2.6 GB/16.0 GB) | Disk C:\ 19% free, D:\ 100% free | Net rx 418 B/s tx 736 B/s  (20 ms)
+    top CPU: python.exe[1368] 24.9%, python.exe[3600] 24.8%, python.exe[9152] 24.8%, WindowsTerminal.exe[9052] 1.6%, taskhostw.exe[4708] 0.6%
+    top MEM: explorer.exe[6960] 160.8 MB, MsMpEng.exe[3980] 159.1 MB, StartMenuExperienceHost.exe[7948] 133.4 MB, SearchHost.exe[8072] 113.2 MB, Runner.Worker.exe[3432] 98.4 MB
+[#6 09:24:01 WARNING] CPU 99.8% | RAM 16.6% (2.7 GB/16.0 GB) | Disk C:\ 19% free, D:\ 100% free | Net rx 1.2 KB/s tx 463 B/s  (136 ms)
+    ALERT WARNING  cpu_max            cpu                    value=99.8%   limit=50%   still WARNING (3 cycles)
+    top CPU: python.exe[1368] 24.6%, python.exe[9152] 24.5%, python.exe[3600] 24.4%, python.exe[1668] 23.8%, WindowsTerminal.exe[9052] 1.8%
+    top MEM: explorer.exe[6960] 160.9 MB, MsMpEng.exe[3980] 159.1 MB, StartMenuExperienceHost.exe[7948] 133.4 MB, SearchHost.exe[8072] 113.2 MB, Runner.Worker.exe[3432] 97.2 MB
+[#7 09:24:11 CRITICAL] CPU 100.0% | RAM 16.6% (2.7 GB/16.0 GB) | Disk C:\ 19% free, D:\ 100% free | Net rx 1.4 KB/s tx 859 B/s  (98 ms)
+    ALERT CRITICAL cpu_max            cpu                    value=100.0%  limit=80%   WARNING->CRITICAL
+    ALERT WARNING  disk_min_free      C:\                    value=18.8%   limit=20%   still WARNING (6 cycles)
+    top CPU: python.exe[9152] 24.6%, python.exe[3600] 24.4%, python.exe[1368] 24.3%, python.exe[1668] 24.1%, WindowsTerminal.exe[9052] 1.5%
+    top MEM: explorer.exe[6960] 160.9 MB, MsMpEng.exe[3980] 159.0 MB, StartMenuExperienceHost.exe[7948] 133.4 MB, SearchHost.exe[8072] 113.2 MB, Runner.Worker.exe[3432] 97.5 MB
+[#8 09:24:21 CRITICAL] CPU 100.0% | RAM 16.6% (2.7 GB/16.0 GB) | Disk C:\ 19% free, D:\ 100% free | Net rx 1.0 KB/s tx 691 B/s  (92 ms)
+    top CPU: python.exe[1368] 24.4%, python.exe[1668] 24.4%, python.exe[9152] 24.4%, python.exe[3600] 24.4%, WindowsTerminal.exe[9052] 1.7%
+    top MEM: explorer.exe[6960] 160.9 MB, MsMpEng.exe[3980] 159.0 MB, StartMenuExperienceHost.exe[7948] 133.4 MB, SearchHost.exe[8072] 113.2 MB, Runner.Worker.exe[3432] 97.9 MB
+[#9 09:24:31 CRITICAL] CPU 100.0% | RAM 16.6% (2.6 GB/16.0 GB) | Disk C:\ 19% free, D:\ 100% free | Net rx 1.0 KB/s tx 328 B/s  (106 ms)
+    ALERT CRITICAL cpu_max            cpu                    value=100.0%  limit=80%   still CRITICAL (3 cycles)
+    top CPU: python.exe[1368] 24.5%, python.exe[3600] 24.5%, python.exe[9152] 24.4%, python.exe[1668] 24.4%, WindowsTerminal.exe[9052] 1.6%
+    top MEM: explorer.exe[6960] 159.4 MB, MsMpEng.exe[3980] 159.0 MB, StartMenuExperienceHost.exe[7948] 133.0 MB, SearchHost.exe[8072] 113.1 MB, Runner.Worker.exe[3432] 96.9 MB
+[#10 09:24:41 CRITICAL] CPU 100.0% | RAM 16.5% (2.6 GB/16.0 GB) | Disk C:\ 19% free, D:\ 100% free | Net rx 1.4 KB/s tx 622 B/s  (97 ms)
+    ALERT WARNING  disk_min_free      C:\                    value=18.8%   limit=20%   still WARNING (9 cycles)
+    top CPU: python.exe[1668] 24.6%, python.exe[1368] 24.4%, python.exe[9152] 24.3%, python.exe[3600] 24.1%, WindowsTerminal.exe[9052] 1.6%
+    top MEM: explorer.exe[6960] 159.4 MB, MsMpEng.exe[3980] 159.0 MB, StartMenuExperienceHost.exe[7948] 130.3 MB, SearchHost.exe[8072] 108.8 MB, Runner.Worker.exe[3432] 96.9 MB
+[#11 09:24:51 WARNING] CPU 4.0% | RAM 16.2% (2.6 GB/16.0 GB) | Disk C:\ 19% free, D:\ 100% free | Net rx 576 B/s tx 775 B/s  (16 ms)
+    ALERT OK       cpu_max            cpu                    value=4.0%    limit=50%   CRITICAL->OK
+    top CPU: WindowsTerminal.exe[9052] 1.5%, Runner.Listener.exe[2588] 0.1%, python.exe[3824] 0.1%, WMIADAP.exe[7620] 0.1%, System[4] 0.1%
+    top MEM: MsMpEng.exe[3980] 159.0 MB, explorer.exe[6960] 159.0 MB, StartMenuExperienceHost.exe[7948] 130.3 MB, SearchHost.exe[8072] 108.8 MB, Runner.Worker.exe[3432] 96.5 MB
+[#12 09:25:01 WARNING] CPU 2.9% | RAM 16.1% (2.6 GB/16.0 GB) | Disk C:\ 19% free, D:\ 100% free | Net rx 1.1 KB/s tx 357 B/s  (15 ms)
+    top CPU: WindowsTerminal.exe[9052] 1.4%, dwm.exe[6632] 0.1%, ctfmon.exe[8812] 0.1%, python.exe[2948] 0.1%, svchost.exe[5984] 0.1%
+    top MEM: MsMpEng.exe[3980] 159.0 MB, explorer.exe[6960] 159.0 MB, StartMenuExperienceHost.exe[7948] 130.2 MB, SearchHost.exe[8072] 108.8 MB, Runner.Worker.exe[3432] 92.1 MB
+[#13 09:25:11 WARNING] CPU 2.7% | RAM 16.0% (2.6 GB/16.0 GB) | Disk C:\ 19% free, D:\ 100% free | Net rx 1.4 KB/s tx 654 B/s  (15 ms)
+    ALERT WARNING  disk_min_free      C:\                    value=18.8%   limit=20%   still WARNING (12 cycles)
+    top CPU: WindowsTerminal.exe[9052] 1.4%, Runner.Worker.exe[3432] 0.1%, System[4] 0.1%, dwm.exe[6632] 0.1%, services.exe[936] 0.1%
+    top MEM: MsMpEng.exe[3980] 159.0 MB, explorer.exe[6960] 159.0 MB, StartMenuExperienceHost.exe[7948] 130.2 MB, SearchHost.exe[8072] 108.7 MB, WindowsTerminal.exe[9052] 85.2 MB
+INFO sysmon.agent: stop requested with 'sysmon --stop'
+
+sysmon: stopped after 13 cycle(s).
+INFO sysmon: agent stopped after 13 cycle(s) (sysmon --stop)

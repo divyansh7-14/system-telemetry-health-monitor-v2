@@ -1,0 +1,24 @@
+# sysmon-agent health rules. Use with:  python -m sysmon --threshold-config config/config.yaml
+# Values are percentages. Write them as 85 or "85%". A bare number (cpu_max: 85)
+# sets only the CRITICAL level. Set a rule to null (or off) to disable it.
+# These values are the same as the built-in defaults used when no file is given.
+
+interval: 15            # seconds between snapshots, 10-30 (--interval overrides)
+top_n: 5                # top CPU and memory processes recorded each cycle (--top-n overrides)
+
+thresholds:
+  cpu_max:            {warning: 75, critical: 85}   # total CPU use; higher is worse
+  memory_max:         {warning: 80, critical: 90}   # RAM in use
+  swap_max:           {warning: 50, critical: 80}   # swap / Windows page file in use
+  disk_min_free:      {warning: 20, critical: 15}   # free space on each disk; LOWER is worse
+  process_cpu_max:    {warning: 50, critical: 80}   # any single process, % of the whole machine
+  process_memory_max: {warning: 25, critical: 40}   # any single process, % of total RAM
+
+alerting:
+  consecutive: 2        # a breach must last this many cycles in a row before it is raised
+  recovery_margin: 5    # it clears only once the value is this many points inside the limit
+  repeat_every: 10      # while a breach lasts, log "still WARNING/CRITICAL" every N cycles (0 = never)
+
+logging:
+  max_log_mb: 5         # rotate each log at this size (--max-log-mb overrides)
+  backup_count: 3       # rotated files kept per log (--backup-count overrides)

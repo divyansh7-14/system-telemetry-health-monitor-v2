@@ -1,0 +1,4 @@
+2026-10-27T09:23:10+0000 INFO    sysmon: agent started: sysmon 1.0.0, PID 2948, output D:\a\system-telemetry-health-monitor\system-telemetry-health-monitor\samples, interval 10s, top 5, logs rotate at 5 MB x 3
+2026-10-27T09:23:10+0000 INFO    sysmon: thresholds loaded from D:\a\system-telemetry-health-monitor\system-telemetry-health-monitor\config\demo.yaml
+2026-10-27T09:25:11+0000 INFO    sysmon.agent: stop requested with 'sysmon --stop'
+2026-10-27T09:25:11+0000 INFO    sysmon: agent stopped after 13 cycle(s) (sysmon --stop)

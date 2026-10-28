@@ -1,0 +1,12 @@
+# Demo thresholds used to produce samples/ (scripts/demo.py).
+# CPU limits are lower than the defaults so a short, scripted load crosses them;
+# every other rule keeps its default value.
+interval: 10
+
+thresholds:
+  cpu_max: {warning: 50, critical: 80}
+
+alerting:
+  consecutive: 2
+  recovery_margin: 5
+  repeat_every: 3
